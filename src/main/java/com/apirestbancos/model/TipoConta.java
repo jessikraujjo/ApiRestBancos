@@ -3,9 +3,11 @@ package com.apirestbancos.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ForeignKey;
@@ -24,10 +26,18 @@ public class TipoConta implements Serializable{
 	private String descricao;
 
 	@JsonIgnore
-	@ForeignKey(name = "conta_id")
-	@ManyToOne(optional = false)
+	@JoinColumn(name="conta_id")
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Conta conta;
 	
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -44,13 +54,5 @@ public class TipoConta implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Conta getConta() {
-		return conta;
-	}
-
-	public void setConta(Conta conta) {
-		this.conta = conta;
-	}
-	
 	
 }

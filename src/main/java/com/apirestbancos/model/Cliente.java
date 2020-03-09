@@ -12,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente implements Serializable{
@@ -32,12 +35,12 @@ public class Cliente implements Serializable{
 	@CPF(message = "Cpf inválido")
 	private String cpf;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<Telefone>();
 	
 	@OneToMany(mappedBy = "cliente", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Conta> contas = new ArrayList<Conta>();
-	
 	
 	public List<Conta> getContas() {
 		return contas;
@@ -87,6 +90,8 @@ public class Cliente implements Serializable{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

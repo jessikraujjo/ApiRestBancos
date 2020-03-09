@@ -2,10 +2,12 @@ package com.apirestbancos.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +27,19 @@ private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy = "banco", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Agencia> agencias = new ArrayList<Agencia>();
 	
+	public List<Agencia> getAgencias() {
+		return agencias == null ? null: new ArrayList<Agencia>(this.agencias);
+	}
+
+	public void setAgencias(List<Agencia> agencias) {
+		
+		if (agencias == null) {
+			this.agencias = null;
+		} else {
+			this.agencias = Collections.unmodifiableList(agencias);
+		}
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -41,13 +56,6 @@ private static final long serialVersionUID = 1L;
 		this.nome = nome;
 	}
 
-	public List<Agencia> getAgencias() {
-		return agencias;
-	}
-
-	public void setAgencias(List<Agencia> agencias) {
-		this.agencias = agencias;
-	}
 	
 	
 }
