@@ -16,10 +16,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages = {"com.*"})
 @EnableJpaRepositories(basePackages = {"com.apirestbancos.repository"})
 @RestController
-@EnableWebMvc
 @EnableAutoConfiguration
 @EnableTransactionManagement
-public class ApiRestBancosApplication implements WebMvcConfigurer{
+public class ApiRestBancosApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiRestBancosApplication.class, args);

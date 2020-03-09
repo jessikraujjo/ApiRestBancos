@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Lista de Convidados</title>
+  <link href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+  <link href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <form class="form-signin" method="post" action="/banco">
+      <h2 class="form-signin-heading">Autentique-se !</h2>
+      <p>
+        <label for="Nome" class="sr-only">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Usuário" required autofocus>
+      </p>
+      <p>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
+      </p>
+      <input th:name="${_csrf.parameterName}" type="hidden" th:value="${_csrf.token}" />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+  </div>
+</body>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</html>
