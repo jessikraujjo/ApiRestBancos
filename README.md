@@ -36,7 +36,8 @@ API Rest genérica para serviços bancários.
    - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/cliente/cadastrar
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
    - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
-      - **{	"id": "", "login":"joao@gmail", "nome": "Joao Silva", "senha": "123", "cpf": "34449902009","endereco": "Dirceu             II", "telefones":[{ "id": "", "numero": "(86)99978-4512"}], 
-               "contas":[{  "id": "", "num_conta": "25288-2",
-    			   "tipoconta": [{ "id": "", "descricao": "corrente"}] }] }**
-      
+      - **{	"id": "0", "login":"joana@gmail", "nome": "marcia Silva", "senha": "1234", "cpf": "34449902009",
+	         "endereco": "Dirceu II", "telefones":[{ "id": "0", "numero": "(86)99978-4512"}],
+	         "contas":[{  "id": "0", "num_conta": "55554-2", "tipoconta": [{ "id": "0", "descricao": "conjunta"}]
+			     }], "agencia_id": "183"} **
+      ![cliente](https://user-images.githubusercontent.com/28812898/76359400-e9f8d900-62f9-11ea-8317-6e5ab5a2325c.png)
