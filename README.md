@@ -41,3 +41,21 @@ API Rest genérica para serviços bancários.
 	         "contas":[{  "id": "0", "num_conta": "55554-2", "tipoconta": [{ "id": "0", "descricao": "conjunta"}]
 			     }], "agencia_id": "183"} **
       ![cliente](https://user-images.githubusercontent.com/28812898/76359400-e9f8d900-62f9-11ea-8317-6e5ab5a2325c.png)
+- Extrato bancário mostrando a movimentação bancária de uma conta:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/cliente/cadastrar
+   - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
+      -
+- Saque:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/conta
+   - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
+- Deposito:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/conta
+   - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
+- Transferência:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/conta
+   - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
+      --
