@@ -19,12 +19,20 @@ API Rest genérica para serviços bancários.
    
    - Logo após é só clicar em Send, e com o token em mãos, você ja pode fazer suas requisições.
 2. Requisições
-- Cadastro de uma instituição financeira:
+- Cadastro de uma Instituição financeira:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/banco/cadastrar
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
    - Na aba **Body**, clique em *row* e adicione o json no modelo abaixo e clique em *Send*
       - **{ "id": "", "nome": "Itaú" }** ou para cadastro junto com alguma agência
-      - **{ "id": "", "nome": "Itaú", "agencias": [{"id": "", "num_agencia": "2021"}] }**
-- Cadastro de uma agência que pertence a uma instituição:
+      - **{ "id": "", "nome": "Nubank", "agencias": [{"id": "", "num_agencia": "2021"}] }**
+      ![bancoAgencia](https://user-images.githubusercontent.com/28812898/76332899-aa1cfc00-62cf-11ea-9055-974994474917.png)
+- Cadastro de uma Agência que pertence a uma instituição:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/agencia/cadastrar
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
    - Na aba **Body**, clique em *row* e adicione o json no modelo abaixo e clique em *Send*
-      - **{ "id": "", "nome": "Itaú" }**
+      - **{ "id": "", "num_agencia": "2020-1", "banco_id": "160"}**
+- Cadastro de Clientes juntmente com uma conta bancária:
+   - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/cliente/cadastrar
+   - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
+   - Na aba **Body**, clique em *row* e adicione o json no modelo abaixo e clique em *Send*
+      - **{ "id": "", "num_agencia": "2020-1", "banco_id": "160"}**
