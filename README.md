@@ -22,17 +22,21 @@ API Rest genérica para serviços bancários.
 - Cadastro de uma Instituição financeira:
    - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/banco/cadastrar
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
-   - Na aba **Body**, clique em *row* e adicione o json no modelo abaixo e clique em *Send*
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
       - **{ "id": "", "nome": "Itaú" }** ou para cadastro junto com alguma agência
       - **{ "id": "", "nome": "Nubank", "agencias": [{"id": "", "num_agencia": "2021"}] }**
       ![bancoAgencia](https://user-images.githubusercontent.com/28812898/76332899-aa1cfc00-62cf-11ea-9055-974994474917.png)
 - Cadastro de uma Agência que pertence a uma instituição:
    - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/agencia/cadastrar
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
-   - Na aba **Body**, clique em *row* e adicione o json no modelo abaixo e clique em *Send*
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
       - **{ "id": "", "num_agencia": "2020-1", "banco_id": "160"}**
+      ![agencia](https://user-images.githubusercontent.com/28812898/76337341-fbc88500-62d5-11ea-93ce-330c8f6c47a0.png)
 - Cadastro de Clientes juntmente com uma conta bancária:
    - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/cliente/cadastrar
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
-   - Na aba **Body**, clique em *row* e adicione o json no modelo abaixo e clique em *Send*
-      - **{ "id": "", "num_agencia": "2020-1", "banco_id": "160"}**
+   - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
+      - **{	"id": "", "login":"joao@gmail", "nome": "Joao Silva", "senha": "123", "cpf": "34449902009","endereco": "Dirceu             II", "telefones":[{ "id": "", "numero": "(86)99978-4512"}], 
+               "contas":[{  "id": "", "num_conta": "25288-2",
+    			   "tipoconta": [{ "id": "", "descricao": "corrente"}] }] }**
+      
