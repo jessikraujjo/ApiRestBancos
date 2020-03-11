@@ -56,6 +56,7 @@ API Rest genérica para serviços bancários.
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
    - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
    	- **{{ "num_contaorigem": "0000-2", "num_contadestino": "2020-2", "valor": "100.0"}**
+	![deposito](https://user-images.githubusercontent.com/28812898/76375768-5fc66a00-6325-11ea-9b0b-bb8e5f6e7ce3.png)
 }
 - Transferência:
    - Enviar requisição do tipo POST com a url: http://localhost:8090/apibanco/conta/transferencia
