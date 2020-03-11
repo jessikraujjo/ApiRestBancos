@@ -63,3 +63,4 @@ API Rest genérica para serviços bancários.
    - Na aba **Authorization** selecionar o type *Bearer Token*, coloque seu token e clique em Preview Request
    - Na aba **Body**, clique em *row* e adicione o json o modelo abaixo e clique em *Send*
       - **{{ "valor": "50.0", "num_contaorigem": "2020-2", "num_contadestino": "0000-2"}**
+![transferencia](https://user-images.githubusercontent.com/28812898/76378628-ad92a080-632c-11ea-8b9f-45bbc165b5bd.png)
