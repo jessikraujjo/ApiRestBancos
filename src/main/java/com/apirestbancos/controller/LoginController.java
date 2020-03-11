@@ -13,8 +13,5 @@ public class LoginController {
 	public String entrar() {
 		return "entrar";
 	}
-	@RequestMapping(method = RequestMethod.GET, path = "/inicio")
-	public String inicio() {
-		return "inicio";
-	}
+	
 }

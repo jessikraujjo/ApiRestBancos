@@ -2,6 +2,7 @@ package com.apirestbancos.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.ForeignKey;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Agencia implements Serializable{
@@ -43,8 +45,16 @@ private static final long serialVersionUID = 1L;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Banco banco; 
 	
+	/*@JoinColumn(name="cliente_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Cliente cliente; */
+	
 	@OneToMany(mappedBy = "agencia", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Conta> contas = new ArrayList<Conta>();
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@OneToMany(mappedBy = "agencia", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Cliente> clientes = new ArrayList<Cliente>();
 
 	public Long getId() {
 		return id;
@@ -72,13 +82,24 @@ private static final long serialVersionUID = 1L;
 
 	@JsonIgnore
 	public List<Conta> getContas() {
-		return contas;
+		return contas == null ? null: new ArrayList<Conta>(this.contas);
 	}
 
 	public void setContas(List<Conta> contas) {
-		this.contas = contas;
+		if (contas == null) {
+			this.contas = null;
+		} else {
+			this.contas = Collections.unmodifiableList(contas);
+		}
 	}
 	
+	@JsonIgnore
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
 	@Override
 	public String toString() {
 		return "Agencia [id=" + id + ", num_agencia=" + num_agencia + ", banco=" + banco 

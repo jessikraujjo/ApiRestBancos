@@ -7,15 +7,19 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Cliente implements Serializable{
@@ -41,6 +45,12 @@ public class Cliente implements Serializable{
 	
 	@OneToMany(mappedBy = "cliente", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Conta> contas = new ArrayList<Conta>();
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JoinColumn(name="agencia_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Agencia agencia; 
+	
 	
 	public List<Conta> getContas() {
 		return contas;
@@ -91,7 +101,12 @@ public class Cliente implements Serializable{
 		this.cpf = cpf;
 	}
 	
-	
+	public Agencia getAgencia() {
+		return agencia;
+	}
+	public void setAgencia(Agencia agencia) {
+		this.agencia = agencia;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

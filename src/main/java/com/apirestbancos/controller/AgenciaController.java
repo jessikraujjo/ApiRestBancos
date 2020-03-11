@@ -46,6 +46,10 @@ public class AgenciaController {
 		Banco banco = new Banco();
 		JSONObject obj = new JSONObject(jsonAgencia);
 		
+		for(int pos = 0 ; pos < agencia.getContas().size(); pos++) {
+			agencia.getContas().get(pos).setAgencia(agencia);
+		}
+		
 		banco.setId(Long.parseLong(obj.getString("banco_id")));
 		agencia.setBanco(banco);
 		agencia.setNum_agencia(obj.getString("num_agencia"));

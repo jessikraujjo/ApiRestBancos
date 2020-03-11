@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.ForeignKey;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Conta implements Serializable {
@@ -29,7 +30,7 @@ public class Conta implements Serializable {
 
 	private String num_conta;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name="agencia_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Agencia agencia;
@@ -37,7 +38,7 @@ public class Conta implements Serializable {
 	@OneToMany(mappedBy = "conta", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<TipoConta> tipoconta = new ArrayList<TipoConta>();
 	
-	@JoinColumn(name="banco_id")
+	@JoinColumn(name="cliente_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 

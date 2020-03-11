@@ -1,5 +1,10 @@
 package com.apirestbancos.security;
 
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,10 +13,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+
 
 
 @EnableWebSecurity
@@ -19,10 +26,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableResourceServer
 public class SegurancaConfig extends WebSecurityConfigurerAdapter{
 	
+	
 	@Bean
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
-		// TODO Auto-generated method stub
+		
 		return super.authenticationManager();
 	}
 	@Override
@@ -36,13 +44,15 @@ public class SegurancaConfig extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 				.anyRequest()
 				.authenticated()
+			.and()
+				.httpBasic();
+							
 			/*.and()
 				.formLogin()
 					.loginPage("/entrar/")
-					.permitAll()*/;
-			
-	
+					.permitAll()*/
 	}
+	
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {

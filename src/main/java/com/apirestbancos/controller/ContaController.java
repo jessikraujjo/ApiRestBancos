@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apirestbancos.model.Agencia;
+import com.apirestbancos.model.Banco;
 import com.apirestbancos.model.Cliente;
 import com.apirestbancos.model.Conta;
 import com.apirestbancos.model.Extrato;
@@ -47,6 +48,10 @@ public class ContaController {
 	@PostMapping(value = "/cadastrar", produces = "application/json")
 	public ResponseEntity<Conta>cadastrar(@RequestBody String jsonconta, Conta conta){
 		
+		Agencia agencia = new Agencia();
+		JSONObject obj = new JSONObject(jsonconta);
+		agencia.setId(Long.parseLong(obj.getString("agencia_id")));
+		conta.setAgencia(agencia);
 		Conta contaSalva = contarepository.save(conta);
 		return new ResponseEntity<Conta>(contaSalva, HttpStatus.OK);
 	}	
@@ -67,6 +72,9 @@ public class ContaController {
 		
 		//pegando o saldo atual pelo numero da conta
 		Conta contaOrigem = contarepository.findUserByConta(obj.getString("num_conta"));
+		if(contaOrigem.getSaldo() == null || contaOrigem.getSaldo() <=0 ) {
+			ResponseEntity.ok("Saldo insuficiente !");
+		}
 		valor = contaOrigem.getSaldo() - valor; 
 		extrato.setContaorigem(contaOrigem);
 		contaOrigem.setSaldo(valor);
@@ -94,7 +102,6 @@ public class ContaController {
 		
 		Conta contaOrigem = contarepository.findUserByConta(obj.getString("num_contaorigem"));
 		extrato.setContaorigem(contaOrigem); //setando conta que esta fazendo a transacao
-		
 		Conta contaDestino = contarepository.findUserByConta(obj.getString("num_contadestino"));
 		valor = valor + contaDestino.getSaldo(); 
 		extrato.setContadestino(contaDestino);
